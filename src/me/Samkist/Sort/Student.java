@@ -1,77 +1,74 @@
 package me.Samkist.Sort;
 
-import java.util.ArrayList;
-
 public class Student implements Comparable<Student> {
-    private ArrayList<Double> tests = new ArrayList<>();
-    private ArrayList<Double> quizzes = new ArrayList<>();
-    private double finalAverage;
-    private double homeWorkAverage;
+    private static int ID = 0;
+    private int studentID;
     private String name;
+    private double GPA;
+    private int grade;
 
-    //    final average=0.5(Test Average)+0.3(Quiz Average)+0.2( Homework Average)
-    public Student(String name) {
+    public Student(int id, String name, double gpa, int grade) {
+        this.studentID = id;
+        this.name = name;
+        this.GPA = gpa;
+        this.grade = grade;
+    }
+
+    public Student(String name, double gpa, int grade) {
+        this.studentID = ID++;
+        this.name = name;
+        this.GPA = gpa;
+        this.grade = grade;
+    }
+
+    public static int getID() {
+        return ID;
+    }
+
+    public int getStudentID() {
+        return studentID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getGPA() {
+        return GPA;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void addTest(Double t) throws IndexOutOfBoundsException {
-        if(tests.size() + 1 > 5) throw new IndexOutOfBoundsException();
-        tests.add(t);
-        updateFinalAverage();
+    public void setGPA(double GPA) {
+        this.GPA = GPA;
     }
 
-    public void addQuiz(Double q) throws IndexOutOfBoundsException {
-        if(quizzes.size() + 1 > 8) throw new IndexOutOfBoundsException();
-        quizzes.add(q);
-        updateFinalAverage();
-    }
-
-    public void setHomeWorkAverage(Double h) {
-        homeWorkAverage = h;
-        updateFinalAverage();
-    }
-
-    public void updateFinalAverage() {
-        finalAverage = (0.5 * getTestAverage()) + (0.3 * getQuizAverage()) + (0.2 * homeWorkAverage);
-    }
-
-    public double getFinalAverage() {
-        return finalAverage;
-    }
-
-    public double getTestAverage() {
-        double total = 0;
-        for(Double d : tests) {
-            total += d;
-        }
-        return total / tests.size();
-    }
-
-    public double getQuizAverage() {
-        double total = 0;
-        for(Double d : quizzes) {
-            total += d;
-        }
-        return total / quizzes.size();
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 
     //Used for comparison
     @Override
     public String toString() {
-        return name;
+        return studentID + "";
     }
 
     //Used for printing
     public String print() {
-        return "Name: " + toString() + "\n"
-                + "HW Average: " + homeWorkAverage + "\n"
-                + "Quiz Average: " + getQuizAverage() + "\n"
-                + "Test Average: " + getTestAverage() + "\n"
-                + "Final Average: " + getFinalAverage() + "\n";
+        return "Name: " + getName() + "\n"
+                + "ID: " + getID() + "\n"
+                + "GPA: " + getGPA() + "\n"
+                + "Grade: " + getGrade() + "\n";
     }
 
     @Override
     public int compareTo(Student student) {
-        return (int) (student.getFinalAverage() - getFinalAverage());
+        return (int) (student.getStudentID() - getStudentID());
     }
 }

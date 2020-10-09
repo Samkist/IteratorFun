@@ -23,10 +23,10 @@ public class Sorter<T extends Comparable<T>> {
         for(int i = 0; i < list.size(); i++) {
             int min = i;
             for(int j = i +1; j < list.size(); j++) {
-                if(sort.equalsIgnoreCase("normal"))
+                if(sort.equalsIgnoreCase("gpa"))
                     if(list.get(j).compareTo(list.get(min)) < 0)
                         min = j;
-                if(sort.equalsIgnoreCase("name"))
+                if(sort.equalsIgnoreCase("id"))
                     if(list.get(j).toString().compareTo(list.get(min).toString()) < 0)
                         min = j;
 
@@ -37,6 +37,7 @@ public class Sorter<T extends Comparable<T>> {
                 list.set(min, b);
                 list.set(i, a);
             }
+            
         }
     }
 

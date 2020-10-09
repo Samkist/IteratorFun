@@ -1,27 +1,60 @@
 package me.Samkist.Sort;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Students {
-    private static final int MAX_STUDENTS = 15;
-    private ArrayList<Student> students = new ArrayList<>();
-    private Main main;
+    private final ArrayList<Student> students = new ArrayList<>();
+    private final Main main;
 
-    public Students(Main m) {
-        main = m;
+    public Students(Main main) {
+        this.main = main;
     }
 
-    public void addStudent(Student s) throws IndexOutOfBoundsException {
-        if(students.size() + 1 > 15) throw new IndexOutOfBoundsException();
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void sort(String type) {
+        new Sorter<>(students, type);
+    }
+
+    public void addStudent(Student s) {
         students.add(s);
-        if(students.size() >= 15) main.disableAddStudent();
+        new Sorter<>(students, "id");
+        main.updateList();
     }
 
-    public ArrayList<Student> getSortedByName() {
-        return new Sorter<Student>(students, "name").get();
+    public Student getStudent(int id) throws NullPointerException {
+        Iterator<Student> it = students.iterator();
+
+        while(it.hasNext()) {
+            Student current = it.next();
+            if(current.getStudentID() == id) {
+                return current;
+            }
+        }
+        throw new NullPointerException("Student with this ID not found.");
     }
 
-    public ArrayList<Student> getSortedByAverage() {
-        return new Sorter<Student>(students, "normal").get();
+    public void removeStudent(int id) throws NullPointerException {
+        Iterator<Student> it = students.iterator();
+
+        while(it.hasNext()) {
+            Student current = it.next();
+            if(current.getStudentID() == id) {
+                it.remove();
+                return;
+            }
+        }
+        throw new NullPointerException("Student with this ID not found.");
+    }
+
+    public ArrayList<Student> getSortedByID() {
+        return new Sorter<Student>(students, "id").get();
+    }
+
+    public ArrayList<Student> getSortedByGPA() {
+        return new Sorter<Student>(students, "gpa").get();
     }
 }

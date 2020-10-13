@@ -21,7 +21,6 @@ public class Students {
 
     public void addStudent(Student s) {
         students.add(s);
-        new Sorter<>(students, "id");
         main.updateList();
     }
 
@@ -48,13 +47,5 @@ public class Students {
             }
         }
         throw new NullPointerException("Student with this ID not found.");
-    }
-
-    public ArrayList<Student> getSortedByID() {
-        return new Sorter<Student>(students, "id").get();
-    }
-
-    public ArrayList<Student> getSortedByGPA() {
-        return new Sorter<Student>(students, "gpa").get();
     }
 }

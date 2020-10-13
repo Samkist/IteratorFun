@@ -62,13 +62,13 @@ public class Student implements Comparable<Student> {
     //Used for printing
     public String print() {
         return "Name: " + getName() + "\n"
-                + "ID: " + getID() + "\n"
+                + "ID: " + this.studentID + "\n"
                 + "GPA: " + getGPA() + "\n"
                 + "Grade: " + getGrade() + "\n";
     }
 
     @Override
     public int compareTo(Student student) {
-        return (int) (student.getStudentID() - getStudentID());
+        return (int) ((student.getGPA() * 10) - (getGPA() * 10));
     }
 }

@@ -8,13 +8,7 @@ public class Sorter<T extends Comparable<T>> {
     private String sort;
 
     public Sorter(ArrayList<T> list, String sort) {
-        this.list = (ArrayList<T>) list.clone();
-        this.sort = sort;
-        sort();
-    }
-
-    public Sorter(T[] list, String sort) {
-        this.list = new ArrayList<>(Arrays.asList(list));
+        this.list = list;
         this.sort = sort;
         sort();
     }
@@ -24,7 +18,7 @@ public class Sorter<T extends Comparable<T>> {
             int min = i;
             for(int j = i +1; j < list.size(); j++) {
                 if(sort.equalsIgnoreCase("gpa"))
-                    if(list.get(j).compareTo(list.get(min)) < 0)
+                    if (list.get(j).compareTo(list.get(min)) < 0)
                         min = j;
                 if(sort.equalsIgnoreCase("id"))
                     if(list.get(j).toString().compareTo(list.get(min).toString()) < 0)
@@ -37,7 +31,6 @@ public class Sorter<T extends Comparable<T>> {
                 list.set(min, b);
                 list.set(i, a);
             }
-            
         }
     }
 

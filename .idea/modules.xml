@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Student-Selection-Sort.iml" filepath="$PROJECT_DIR$/Student-Selection-Sort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IteratorFun.iml" filepath="$PROJECT_DIR$/IteratorFun.iml" />
     </modules>
   </component>
 </project>
